@@ -1,0 +1,6 @@
+Page$logicalname$locatortype$value
+Google$google_gmail$linktext$Gmail
+Temp$Temp_LogicalName$id$abc
+guru99_homepage$homepage_mobile$linktext$MOBILE
+mobile$samsung_mobileAddtoCart$xpath$//div[@class='product-info'][contains(.,'Samsung')]//button
+mobile$mobile_sortbyDropdown$xpath$//div[@class='toolbar-bottom']//select[@title='Sort By']
