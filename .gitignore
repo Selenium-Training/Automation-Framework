@@ -1,12 +1,32 @@
-*.class
+# Backup files
+*.bak
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Eclipse
+.classpath
+.externalToolBuilders/
+.metadata
+.project
+.settings/
+bin/
+RemoteSystemsTempFiles
 
-# Package Files #
-*.jar
-*.war
-*.ear
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Java
+doc/
+
+# Maven
+target/
+
+# TestNG 
+test-output/
+
+# Vim
+[._]*.sw[a-p]
+[._]*.s[a-v][a-z]
+*~
+
