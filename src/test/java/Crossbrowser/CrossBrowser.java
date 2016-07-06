@@ -15,9 +15,13 @@ public class CrossBrowser {
 
 	@Parameters("browserType")
 	@Test
-	public void crossBrowser(@Optional(Browser.BROSERTYPE_FF) String browserType) throws IOException{
+	public void crossBrowser(@Optional(Browser.BROWSERTYPE_CHROME) String browserType) throws IOException{
 		ExecutionEssentials essentials = new ExecutionEssentials(browserType);
+		essentials.browser.openURL("http:\\www.bing.com");
+		essentials.browser.click("google_gmail");
+
 		System.out.println("");
+		
 
 	}
 

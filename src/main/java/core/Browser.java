@@ -1,14 +1,20 @@
 package core;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pom.ObjectRepMap;
 
@@ -17,6 +23,8 @@ public class Browser {
 
 	private WebDriver driver;
 	private String browserType;
+	private final int defaultTimeOut = 60;
+	private final int defaultPollingInterval = 250;
 
 	public static final String BROWSERTYPE_IE = "IE";
 	public static final String BROWSERTYPE_CHROME = "CHROME";
@@ -51,6 +59,8 @@ public class Browser {
 		}
 
 		driver.get(url);
+		//driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+
 
 		maximiseBrowser();
 	}
@@ -134,11 +144,13 @@ public class Browser {
 
 	public void click(final String logicalName){
 		//WebElement element = driver.findElement(objectRepMap.getLocator(logicalName));
+		waitForElementToBeClickable(logicalName);
 		WebElement element = getWebElementFromLogicalName(logicalName);
 		element.click();
 	}
 
 	public void enterText(String logicalName, String textToenter) {
+		waitForElementToBeVisible(logicalName);
 		WebElement element = getWebElementFromLogicalName(logicalName);
 		element.clear();
 		element.sendKeys(textToenter);
@@ -188,14 +200,35 @@ public class Browser {
 		return elementText;
 	}
 
-	public String getBrowserType() {
+	private String getBrowserType() {
 		return browserType;
 	}
 
-	public void setBrowserType(String browserType) {
+	private void setBrowserType(String browserType) {
 		this.browserType = browserType;
 	}
 
 
+	public void waitForElementToBeClickable(String logicalName){
+		WebDriverWait webDriverWait = new WebDriverWait(driver,defaultTimeOut);
+		webDriverWait.until(ExpectedConditions.elementToBeClickable(objectRepMap.getLocator(logicalName)));
+	}
+	
+	public void waitForElementToBeVisible(String logicalName){
+		WebDriverWait webDriverWait = new WebDriverWait(driver,defaultTimeOut);
+		webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(objectRepMap.getLocator(logicalName)));
+	}
+	
+	private FluentWait<WebDriver> waitFor(){
+		return new FluentWait<WebDriver>(driver)
+				.withTimeout(defaultTimeOut, TimeUnit.SECONDS)
+				.pollingEvery(defaultPollingInterval, TimeUnit.MILLISECONDS)
+				.ignoring(NoSuchElementException.class);
+	}
+	
+	public void waitForElementToBeVisibleFluent(String logicalName){
+		waitFor().until(ExpectedConditions.visibilityOfElementLocated(objectRepMap.getLocator(logicalName)));
+	}
+	
 }
 
