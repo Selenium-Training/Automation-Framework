@@ -5,7 +5,9 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import pom.ObjectRepMap;
@@ -14,7 +16,15 @@ import pom.ObjectRepMap;
 public class Browser {
 
 	private WebDriver driver;
-	
+	private String browserType;
+
+	public static final String BROWSERTYPE_IE = "IE";
+	public static final String BROWSERTYPE_CHROME = "CHROME";
+	public static final String BROSERTYPE_FF = "FF"; 
+
+	private final String CHROMEDRIVER_PATH = System.getProperty("user.dir") + "/src/main/resources/Drivers/chromedriver.exe"; 
+	private final String IEDRIVER_PATH = System.getProperty("user.dir") + "/src/main/resources/Drivers/IE.exe";
+
 	public static final String LOCATOR_ID = "ID";
 	public static final String LOCATOR_LINKTEXT = "LinkText";
 	public static final String LOCATOR_XPATH = "XPath";
@@ -22,20 +32,48 @@ public class Browser {
 	public static final String LOCATOR_CLASSNAME= "classname";
 	public static final String LOCATOR_PARTIALLINK = "partiallink";
 
+
+
+
 	private ObjectRepMap objectRepMap = new ObjectRepMap();
 
-	public Browser() throws IOException
+	public Browser(String browserType) throws IOException
 	{
+		setBrowserType(browserType);
 		objectRepMap.createObjectStore();
 	}
 
 	public void openURL(final String url){
-		if(driver == null)
-			driver = new FirefoxDriver();
+		if(driver == null){
+			//driver = new FirefoxDriver();
+
+			setDriver();
+		}
+
 		driver.get(url);
 
 		maximiseBrowser();
 	}
+
+	public void setDriver(){
+
+		if (getBrowserType().equals(BROSERTYPE_FF)){
+			driver = new FirefoxDriver();
+			System.out.println("Statring seseion with firefox");
+		}
+		else if (getBrowserType().equals(BROWSERTYPE_CHROME)){
+			System.setProperty("webdriver.chrome.driver",CHROMEDRIVER_PATH);
+			driver = new ChromeDriver();
+			System.out.println("Statring Sesion with Crome ");
+		}
+		else if(getBrowserType().equals(BROWSERTYPE_IE)){
+			System.setProperty("", IEDRIVER_PATH);
+			driver = new InternetExplorerDriver();
+			System.out.println("Statring Sesion with IE ");
+		}
+
+	}
+
 
 	@Deprecated
 	private WebElement getElement(String locatorName, String value)
@@ -71,7 +109,7 @@ public class Browser {
 		return (element);
 
 	}
-	
+
 	@Deprecated
 	public void click(String locatorName, String value) {
 		//getElement(locatorName, value).click();
@@ -85,7 +123,7 @@ public class Browser {
 		element.clear(); // to clear pre values 
 		element.sendKeys(textToEnter);
 	}
-	
+
 	public void closeAllBroser () {
 		driver.quit();
 	}
@@ -93,39 +131,39 @@ public class Browser {
 	public void maximiseBrowser() {
 		driver.manage().window().maximize();
 	}
-	
+
 	public void click(final String logicalName){
 		//WebElement element = driver.findElement(objectRepMap.getLocator(logicalName));
 		WebElement element = getWebElementFromLogicalName(logicalName);
 		element.click();
 	}
-	
+
 	public void enterText(String logicalName, String textToenter) {
 		WebElement element = getWebElementFromLogicalName(logicalName);
 		element.clear();
 		element.sendKeys(textToenter);
 	}
-	
+
 	private WebElement getWebElementFromLogicalName(final String logicalName){
 		return driver.findElement(objectRepMap.getLocator(logicalName));
 	}
-	
+
 	public void updateObjectRepository(final String logicalName, final String locatorType, final String value){
 		objectRepMap.setValueForKey(logicalName, locatorType+"=>"+value);
 	}
-	
+
 	public void selectByLable(String logicalName,String label)
 	{
-		
+
 		Select select= new Select(getWebElementFromLogicalName(logicalName));
 		select.selectByVisibleText(label);
-				
+
 	}
 	public void selectByIndex(String logicalName,int index)	{
 		Select select = new Select(getWebElementFromLogicalName(logicalName));
 		select.selectByIndex(index);
 	}
-	
+
 	public void selectByValue(String logicalName,String value ) {
 		Select select = new Select(getWebElementFromLogicalName(logicalName));
 		select.selectByValue(value);
@@ -135,7 +173,7 @@ public class Browser {
 		String selectedValueIndropDown = select.getFirstSelectedOption().getText();
 		return selectedValueIndropDown;
 	}
-	
+
 	public boolean isTextPresentOnPage(String text){
 		WebElement element = driver.findElement(By.tagName("body"));
 		String webText = element.getText();
@@ -143,11 +181,21 @@ public class Browser {
 			return true;
 		return false;
 	}
-	
+
 	public String getElementText(String logicalName){
 		WebElement element = getWebElementFromLogicalName(logicalName);
 		String elementText = element.getText();
 		return elementText;
 	}
+
+	public String getBrowserType() {
+		return browserType;
+	}
+
+	public void setBrowserType(String browserType) {
+		this.browserType = browserType;
+	}
+
+
 }
 

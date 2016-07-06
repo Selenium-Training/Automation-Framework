@@ -10,7 +10,7 @@ public class FrameworkLevelScript {
 
 	@Test 
 	public void test() throws IOException{
-		ExecutionEssentials ee = new ExecutionEssentials();
+		ExecutionEssentials ee = new ExecutionEssentials("");
 		ee.browser.openURL(ee.frameworkProperties.platformProperties.getValue("googleHomePageURL"));
 	}
 }
