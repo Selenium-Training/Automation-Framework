@@ -7,8 +7,8 @@ public class ExecutionEssentials {
 	public Browser browser;
 	public FrameworkProperties frameworkProperties;
 	
-	public ExecutionEssentials() throws IOException{
-		browser = new Browser();
+	public ExecutionEssentials(String browserType) throws IOException{
+		browser = new Browser(browserType);
 		frameworkProperties = new FrameworkProperties();
 	}
 }

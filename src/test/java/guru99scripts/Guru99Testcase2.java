@@ -14,7 +14,7 @@ public class Guru99Testcase2 {
 	public void test2() throws IOException {
 		//boolean flag = false;
 		
-		Browser browser = new Browser();
+		Browser browser = new Browser("");
 		browser.openURL("http://live.guru99.com/");
 		browser.click("homepage_mobile");
 		browser.selectByIndex("mobile_sortbyDropdown",2);
