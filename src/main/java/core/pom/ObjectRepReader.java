@@ -1,4 +1,4 @@
-package pom;
+package core.pom;
 
 
 public class ObjectRepReader 

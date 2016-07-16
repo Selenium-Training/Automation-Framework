@@ -2,8 +2,8 @@ package core;
 
 import java.io.IOException;
 
-import properties.ExecutionProperties;
-import properties.PlatformProperties;
+import core.properties.ExecutionProperties;
+import core.properties.PlatformProperties;
 
 public class FrameworkProperties {
 

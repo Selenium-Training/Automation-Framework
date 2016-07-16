@@ -1,4 +1,4 @@
-package pom;
+package core.pom;
 
 
 import java.io.FileNotFoundException;
