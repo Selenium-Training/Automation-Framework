@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.testng.annotations.Test;
 
-import core.Browser;
+import core.BrowserOld;
 
 public class Guru99Testcase1 
 
@@ -14,7 +14,7 @@ public class Guru99Testcase1
 	
 	public void Test1() throws IOException
 	{
-		Browser browser = new Browser("");
+		BrowserOld browser = new BrowserOld("");
 		browser.openURL("http://live.guru99.com/");
 		browser.click("homepage_mobile");
 		browser.click("samsung_mobileAddtoCart");

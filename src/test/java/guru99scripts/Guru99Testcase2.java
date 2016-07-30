@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import core.Browser;
+import core.BrowserOld;
 
 
 public class Guru99Testcase2 {
@@ -14,7 +14,7 @@ public class Guru99Testcase2 {
 	public void test2() throws IOException {
 		//boolean flag = false;
 		
-		Browser browser = new Browser("");
+		BrowserOld browser = new BrowserOld("");
 		browser.openURL("http://live.guru99.com/");
 		browser.click("homepage_mobile");
 		browser.selectByIndex("mobile_sortbyDropdown",2);
