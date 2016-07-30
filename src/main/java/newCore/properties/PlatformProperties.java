@@ -9,6 +9,8 @@ import java.util.Set;
 public class PlatformProperties {
 
 	private Properties properties = null;
+	private String dellHomePageURL;
+
 	private Map<String, String> platformProperties = new HashMap<String, String>();
 
 	public PlatformProperties() throws IOException{
@@ -18,6 +20,9 @@ public class PlatformProperties {
 	private void readPlatformProperties() throws IOException{
 		properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("PlatformInformation.properties"));
+		
+		setDellHomePageURL(properties.getProperty("dellHomePageURL"));
+		
 		Set<Object> keys = properties.keySet();
 		for(Object obj : keys){
 			String key = obj.toString();
@@ -33,5 +38,12 @@ public class PlatformProperties {
 		return platformProperties.get(key);
 	}
 
+	public String getDellHomePageURL(){
+		return dellHomePageURL;
+	}
+
+	public void setDellHomePageURL(final String dellHomePageURL){
+		this.dellHomePageURL = dellHomePageURL;
+	}
 
 }

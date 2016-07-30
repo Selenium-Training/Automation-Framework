@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import newCore.FrameworkProperties;
 
-public class ExecutionEssentials {
+public class ExecutionEssentialsOld {
 
 	public BrowserOld browser;
 	public FrameworkProperties frameworkProperties;
 	
-	public ExecutionEssentials(String browserType) throws IOException{
+	public ExecutionEssentialsOld(String browserType) throws IOException{
 		browser = new BrowserOld(browserType);
 		frameworkProperties = new FrameworkProperties();
 	}

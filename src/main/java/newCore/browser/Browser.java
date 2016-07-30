@@ -46,6 +46,7 @@ import newCore.pageObjectModel.PageElement;
 import newCore.pageObjectModel.pageElements.FileUploadPageElement;
 import newCore.pageObjectModel.pageElements.IframePageElement;
 import newCore.pageObjectModel.pageElements.ListboxPageElement;
+import newCore.pageObjectModel.pageElements.TextboxPageElement;
 
 public class Browser extends BrowserSettings{
 
@@ -249,7 +250,6 @@ public class Browser extends BrowserSettings{
 			setDriver();
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		System.out.println("Navigated To URL: "+ url);
 		driver.get(url);
 		maximizeBrowser();
@@ -731,7 +731,7 @@ public class Browser extends BrowserSettings{
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	public void enterText(final PageElement pageElement, final String text)
+	public void enterText(final TextboxPageElement pageElement, final String text)
 			throws ParserConfigurationException, SAXException, IOException {
 		if (text != null) {
 			this.waitForVisibleElement(pageElement);

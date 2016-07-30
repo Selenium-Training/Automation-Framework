@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 public abstract class BrowserSettings {
 
 	private String browserType;
-	private final String FILEPATH_CHROMEBROWSER = "Selenium\\SeleniumGridTesting\\WebDriver\\chromedriver.exe";
+	private final String FILEPATH_CHROMEBROWSER = System.getProperty("user.dir") + "/src/main/resources/Drivers/chromedriver.exe";
 	private final String FILEPATH_IEBROWSER = "Selenium\\SeleniumGridTesting\\WebDriver\\IEDriverServer.exe";
 	private final String filePath_ModifyHeaders = "Selenium\\SeleniumGridTesting\\WebDriver\\modify_headers.xpi";
 
@@ -69,7 +69,7 @@ public abstract class BrowserSettings {
 			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 			driver = new InternetExplorerDriver();
 		} else if(browserType.equals(Browser.BROWSERTYPE_CHROME)){
-			final File file = new File("");
+			final File file = new File(FILEPATH_CHROMEBROWSER);
 			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 
 			final ChromeOptions options = new ChromeOptions();
