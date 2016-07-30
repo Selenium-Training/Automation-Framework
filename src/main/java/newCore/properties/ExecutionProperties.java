@@ -1,4 +1,4 @@
-package core.properties;
+package newCore.properties;
 
 public class ExecutionProperties {
 
