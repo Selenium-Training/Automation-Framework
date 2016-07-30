@@ -13,7 +13,6 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import core.BrowserOld;
-import core.ExecutionEssentials;
 
 public class CrossBrowser {
 
