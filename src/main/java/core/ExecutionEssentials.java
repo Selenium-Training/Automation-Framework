@@ -2,6 +2,8 @@ package core;
 
 import java.io.IOException;
 
+import newCore.FrameworkProperties;
+
 public class ExecutionEssentials {
 
 	public BrowserOld browser;

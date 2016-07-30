@@ -1,9 +1,9 @@
-package core;
+package newCore;
 
 import java.io.IOException;
 
-import core.properties.ExecutionProperties;
-import core.properties.PlatformProperties;
+import newCore.properties.ExecutionProperties;
+import newCore.properties.PlatformProperties;
 
 public class FrameworkProperties {
 

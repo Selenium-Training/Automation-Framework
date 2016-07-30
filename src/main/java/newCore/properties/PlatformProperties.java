@@ -1,4 +1,4 @@
-package core.properties;
+package newCore.properties;
 
 import java.io.IOException;
 import java.util.HashMap;
