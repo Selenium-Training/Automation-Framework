@@ -4,11 +4,11 @@ import java.io.IOException;
 
 public class ExecutionEssentials {
 
-	public Browser browser;
+	public BrowserOld browser;
 	public FrameworkProperties frameworkProperties;
 	
 	public ExecutionEssentials(String browserType) throws IOException{
-		browser = new Browser(browserType);
+		browser = new BrowserOld(browserType);
 		frameworkProperties = new FrameworkProperties();
 	}
 }

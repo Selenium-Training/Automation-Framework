@@ -19,7 +19,7 @@ import core.pom.ObjectRepMap;
 
 
 
-public class Browser {
+public class BrowserOld {
 
 	private WebDriver driver;
 	private String browserType;
@@ -45,7 +45,7 @@ public class Browser {
 
 	private ObjectRepMap objectRepMap = new ObjectRepMap();
 
-	public Browser(String browserType) throws IOException
+	public BrowserOld(String browserType) throws IOException
 	{
 		setBrowserType(browserType);
 		objectRepMap.createObjectStore();
