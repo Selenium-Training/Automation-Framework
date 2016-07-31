@@ -11,6 +11,7 @@ public class AutomationTest {
 	
 	public AutomationTest(final Object object, final String browserType) throws IOException{
 		executionEssentials = new ExecutionEssentials(object,browserType);
+		executionEssentials.browser.setExecutionEssentails(executionEssentials);
 		dell = new Dell(executionEssentials);
 	}
 }

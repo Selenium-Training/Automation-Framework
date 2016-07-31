@@ -25,7 +25,7 @@ public class PageElement {
         return this.locator;
     }
 
-    public String getTestName() {
+    public String getElementName() {
         return this.elementName;
     }
 

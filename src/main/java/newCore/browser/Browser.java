@@ -60,7 +60,10 @@ public class Browser extends BrowserSettings{
 	public Browser(final String browserType){
 		super(browserType);
 	}
-
+	
+	public void setExecutionEssentails(ExecutionEssentials executionEssentials){
+		this.executionEssentials = executionEssentials;
+	}
 
 	/**
 	 * Accept the Alert. <<br>
@@ -251,6 +254,7 @@ public class Browser extends BrowserSettings{
 		}
 
 		System.out.println("Navigated To URL: "+ url);
+		executionEssentials.log.logStep("Navigating to URL", url);
 		driver.get(url);
 		maximizeBrowser();
 
@@ -636,8 +640,11 @@ public class Browser extends BrowserSettings{
 	 */
 	public void click(final PageElement pageElement) throws ParserConfigurationException, SAXException, IOException {
 		this.waitForClickableElement(pageElement);
+		executionEssentials.log.logStep("Clicking on "+pageElement.getElementName(), "");
+		
 		final WebElement webElement = this.getElement(pageElement.getLocator());
-
+		
+		
 		webElement.click();
 	}
 
@@ -735,6 +742,7 @@ public class Browser extends BrowserSettings{
 			throws ParserConfigurationException, SAXException, IOException {
 		if (text != null) {
 			this.waitForVisibleElement(pageElement);
+			executionEssentials.log.logStep("Entering text in "+pageElement.getElementName()+" Textbox", text);
 			final WebElement webElement = this.getElement(pageElement.getLocator());
 			
 			webElement.clear();
