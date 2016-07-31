@@ -9,8 +9,8 @@ public class AutomationTest {
 	public ExecutionEssentials executionEssentials;
 	public Dell dell;
 	
-	public AutomationTest(final String browserType) throws IOException{
-		executionEssentials = new ExecutionEssentials(browserType);
+	public AutomationTest(final Object object, final String browserType) throws IOException{
+		executionEssentials = new ExecutionEssentials(object,browserType);
 		dell = new Dell(executionEssentials);
 	}
 }
