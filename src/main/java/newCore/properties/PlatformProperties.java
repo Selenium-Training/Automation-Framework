@@ -10,6 +10,8 @@ public class PlatformProperties {
 
 	private Properties properties = null;
 	private String dellHomePageURL;
+	private String microsoftHomePageURL;
+
 
 	private Map<String, String> platformProperties = new HashMap<String, String>();
 
@@ -20,9 +22,10 @@ public class PlatformProperties {
 	private void readPlatformProperties() throws IOException{
 		properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("PlatformInformation.properties"));
-		
+
 		setDellHomePageURL(properties.getProperty("dellHomePageURL"));
-		
+		setMicrosoftHomePageURL(properties.getProperty("microsoftHomePageURL"));
+
 		Set<Object> keys = properties.keySet();
 		for(Object obj : keys){
 			String key = obj.toString();
@@ -45,5 +48,14 @@ public class PlatformProperties {
 	public void setDellHomePageURL(final String dellHomePageURL){
 		this.dellHomePageURL = dellHomePageURL;
 	}
+
+	public String getMicrosoftHomePageURL() {
+		return microsoftHomePageURL;
+	}
+
+	public void setMicrosoftHomePageURL(String microsoftHomePageURL) {
+		this.microsoftHomePageURL = microsoftHomePageURL;
+	}
+
 
 }

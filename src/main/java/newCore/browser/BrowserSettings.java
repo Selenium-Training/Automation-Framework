@@ -24,6 +24,8 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.xml.sax.SAXException;
 
+import newCore.ExecutionEssentials;
+
 public abstract class BrowserSettings {
 
 	private String browserType;
@@ -38,6 +40,9 @@ public abstract class BrowserSettings {
 
 	protected WebDriver driver;
 	protected JavascriptExecutor javascriptExecutor;
+	
+	protected ExecutionEssentials executionEssentials;
+	
 
 	public BrowserSettings(final String browserType){
 		setBrowserType(browserType);
@@ -63,12 +68,16 @@ public abstract class BrowserSettings {
 	
 	private void setLocalDriver() throws ParserConfigurationException, SAXException, IOException{
 		if(browserType.equals(Browser.BROWSERTYPE_FF)){
+			executionEssentials.log.logStep("Starting Execution On", browserType);
 			driver = new FirefoxDriver(setFireFoxProfileAutomaticDownload());
+			
 		} else if(browserType.equals(Browser.BROWSERTYPE_IE)) {
+			executionEssentials.log.logStep("Starting Execution On", browserType);
 			final File file = new File("");
 			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 			driver = new InternetExplorerDriver();
 		} else if(browserType.equals(Browser.BROWSERTYPE_CHROME)){
+			executionEssentials.log.logStep("Starting Execution On", browserType);
 			final File file = new File(FILEPATH_CHROMEBROWSER);
 			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 
